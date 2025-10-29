@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Text>Command ConnectSQL</Text>
+    <Description>Some description for ConnectSQL</Description>
+    <Assembly>ConnectSQL.dll</Assembly>
+    <FullClassName>ConnectSQL.Command</FullClassName>
+    <ClientId>8ae38d75-d828-4883-ad08-f650d7bfbd69</ClientId>
+    <VendorId>com.typepad.thebuildingcoder</VendorId>
+    <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+  </AddIn>
+  <AddIn Type="Application">
+    <Name>Application ConnectSQL</Name>
+    <Assembly>ConnectSQL.dll</Assembly>
+    <FullClassName>ConnectSQL.App</FullClassName>
+    <ClientId>62731474-5745-4cbd-b17c-416f403c6d43</ClientId>
+    <VendorId>com.typepad.thebuildingcoder</VendorId>
+    <VendorDescription>The Building Coder, http://thebuildingcoder.typepad.com</VendorDescription>
+  </AddIn>
+</RevitAddIns>

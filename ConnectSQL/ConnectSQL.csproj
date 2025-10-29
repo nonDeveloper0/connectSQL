@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>warnings</Nullable>
+		<UseWPF>true</UseWPF>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+		<RootNamespace>ConnectSQL</RootNamespace>
+		<AssemblyName>ConnectSQL</AssemblyName>
+		<PlatformTarget>x64</PlatformTarget>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<NoWarn>1701;1702;MSB3277</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<NoWarn>1701;1702;MSB3277</NoWarn>
+	</PropertyGroup>
+
+	<Target Name="DeleteAddinAndDll" AfterTargets="Clean">
+		<Delete ContinueOnError="true" Files="$(AppData)\Autodesk\REVIT\Addins\2025\ConnectSQL.addin" />
+		<Delete ContinueOnError="true" Files="$(AppData)\Autodesk\REVIT\Addins\2025\ConnectSQL.dll" />
+	</Target>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="if exist &quot;$(AppData)\Autodesk\REVIT\Addins\2025&quot; copy &quot;$(ProjectDir)*.addin&quot; &quot;$(AppData)\Autodesk\REVIT\Addins\2025&quot;&#xD;&#xA;if exist &quot;$(AppData)\Autodesk\REVIT\Addins\2025&quot; copy &quot;$(ProjectDir)$(OutputPath)*.dll&quot; &quot;$(AppData)\Autodesk\REVIT\Addins\2025&quot;&#xD;&#xA;&#xD;&#xA;if not exist &quot;$(AppData)\Autodesk\REVIT\Addins\2025\Resources&quot; mkdir &quot;$(AppData)\Autodesk\REVIT\Addins\2025\Resources&quot;&#xD;&#xA;if exist &quot;$(AppData)\Autodesk\REVIT\Addins\2025\Resources&quot; copy &quot;$(ProjectDir)\Resources\*&quot; &quot;$(AppData)\Autodesk\REVIT\Addins\2025\Resources&quot;" />
+	</Target>
+
+	<ItemGroup>
+	  <None Remove="Resources\database.png" />
+	  <None Remove="Resources\sql_32.ico" />
+	  <None Remove="Resources\sql_64.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.3" />
+	  <PackageReference Include="Microsoft.Data.SqlClient.SNI.runtime" Version="5.2.0" />
+	  <PackageReference Include="Microsoft.Identity.Client" Version="4.77.1" />
+	</ItemGroup>	
+
+	<ItemGroup>
+		<Reference Include="RevitAPI">
+			<HintPath>$(ProgramW6432)\Autodesk\Revit 2025\RevitAPI.dll</HintPath>
+		</Reference>
+		<Reference Include="RevitAPIUI">
+			<HintPath>$(ProgramW6432)\Autodesk\Revit 2025\RevitAPIUI.dll</HintPath>
+		</Reference>
+	</ItemGroup>	
+
+	<ItemGroup>
+	  <Resource Include="Resources\database.png">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\sql_32.ico">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Resource>
+	  <Resource Include="Resources\sql_64.ico">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Resource>
+	</ItemGroup>
+
+</Project>
