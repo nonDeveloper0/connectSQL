@@ -26,4 +26,4 @@ namespace ConnectSQL
         }
     }
 }
-// 추가
+// 추가 v251029
