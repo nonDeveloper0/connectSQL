@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Autodesk.Revit.DB;
 using Microsoft.Data.SqlClient;
 
+// commit 해보자
 namespace ConnectSQL
 {
     public class SQLDBConnect
@@ -26,4 +27,3 @@ namespace ConnectSQL
         }
     }
 }
-// 추가 v251029
